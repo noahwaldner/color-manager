@@ -22,7 +22,7 @@ const cache = new InMemoryCache({
 });
 
 const client = new ApolloClient({
-  uri: "http://localhost:8080",
+  uri: "https://color-api-nnxacpp5eq-uc.a.run.app",
   cache: cache,
   connectToDevTools: true,
 });

@@ -14,9 +14,9 @@ export const generateColors = () => {
   });
 
   const options = {
-    hostname: "localhost",
+    hostname: "https://color-api-nnxacpp5eq-uc.a.run.app",
     path: "/",
-    port: 8080,
+    port: 80,
     method: "POST",
     headers: {
       "Content-Type": "application/json",
