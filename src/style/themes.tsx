@@ -22,7 +22,10 @@ const lightTheme = {
   },
   white: "#fff",
   black: "#000",
+  mediumBreakpoint: "500px",
 };
+
+export const globalStyles = lightTheme
 
 interface IGlobalStylesProps {
   theme: "light" | "dark";
