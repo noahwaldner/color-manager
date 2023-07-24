@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# Running the App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Run the App in dev mode:
 
-## Available Scripts
+```
+yarn start
+```
 
-In the project directory, you can run:
+Build the App:
 
-### `npm start`
+```
+yarn build
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Technologies used
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The App was bootstrapped with _create-react-app_ + typescript and uses the following following additional libraries:
 
-### `npm test`
+- [wouter](https://github.com/molefrog/wouter) for routing
+- [styled-components](https://styled-components.com/) for styling
+- [apollo-client](https://www.apollographql.com/docs/react/) for GraphQL
+- [cypress](https://www.cypress.io/) for testing
+- [helmet](https://helmetjs.github.io/) for web headers
+- [graphql-codegen](https://graphql-code-generator.com/) for generating types from GraphQL queries
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# Structure
 
-### `npm run build`
+The Components are divided into two main folders: _components_ and _pages_.
+Pages are the main routes of the App, while components are reusable pieces of UI.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The _pages_ folder contains the following pages:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `Overview`: the main page of the App, showing the list of colors. Route `/`.
+- `DetailView`: the page that shows the details of a color and allows for editing or deleting it. Route `/color:id`.
+- `AddColor`: the page that allows for adding a new color. Route `/add`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# GraphQL
 
-### `npm run eject`
+All GraphQL queries and mutations are defined in a file next to the component that uses them. This allows for easy access to the queries and mutations that are used in a component.
+For reusability and optimized type generation fields are maintained as GraphQL Fragments. These fragments are then used in the queries and mutations.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Type generation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The command `yarn generate:types` triggers two different actions:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- The GraphQL schema is automatically downloaded from the server and saved to ensure that the types are always up to date.
+- The types and hooks for all queries and mutations are generated. These can then be imported in components to ensure a completely type-safe usage of the GraphQL data in all components.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+configuration for the type generation can be found in the `tools/codegen.ts` file.
 
-## Learn More
+# Styling
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The App uses styled-components for styling. The styles are defined in the same file as the component that uses them. This allows for easy access to the styles that are used in a component.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Theming
+
+The App uses a theme that is defined in the `theme.ts` file. This theme is then used in the `GlobalStyle` component to define the global styles of the App. The GlobalStyle component is then used in the `App` component to ensure that the global styles are applied to the entire App.
+
+A parameter `light` or `dark` can be passed to the `GlobalStyle` component to switch between light and dark mode.
+
+**Currently only the light theme variant is implemented, but it would be easy to add the dark theme or even more variants and themes.**
+
+## Colors
+
+There is a script wich can be executed with the commend `yarn generate:colors`. This script will download the colors from the graphql endpoint and makes them abailable to be used in themes. This allows for easy access to the colors that are used in the App.
+
+**This may not make too much sense in this context, but it would be very useful in a larger App, when connected to a brand-color library**
+
+# Testing
+
+The App uses cypress for testing. The tests are located next to the component that they test. This allows for easy access to the tests that are used in a component.
+
+**Only a few tests are implemented, many more can be implemented**

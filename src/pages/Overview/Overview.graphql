@@ -1,0 +1,5 @@
+query GET_ALL_COLORS($offset: Int, $limit: Int) {
+  colors(offset: $offset, limit: $limit) {
+    ...BasicColorInfoWithId
+  }
+}

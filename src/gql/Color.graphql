@@ -1,0 +1,9 @@
+fragment BasicColorInfo on Color {
+  name
+  value
+}
+
+fragment BasicColorInfoWithId on Color {
+  id
+  ...BasicColorInfo
+}

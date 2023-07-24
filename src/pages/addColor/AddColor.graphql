@@ -1,0 +1,5 @@
+mutation ADD_COLOR($name: String!, $value: String!) {
+  addColor(name: $name, value: $value) {
+    ...BasicColorInfoWithId
+  }
+}

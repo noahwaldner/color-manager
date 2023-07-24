@@ -1,0 +1,15 @@
+query GET_COLOR($id: Int!) {
+  color(id: $id) {
+    ...BasicColorInfoWithId
+  }
+}
+mutation EDIT_COLOR($id: Int!, $name: String!, $value: String!) {
+  updateColor(id: $id, name: $name, value: $value) {
+    ...BasicColorInfoWithId
+  }
+}
+mutation REMOVE_COLOR($id: Int!) {
+  removeColor(id: $id) {
+    success
+  }
+}
