@@ -1,32 +1,25 @@
-import * as Types from "../../gql/types";
+import * as Types from '../../gql/types';
 
-import { gql } from "@apollo/client";
-import { BasicColorInfoWithIdFragmentDoc } from "../../gql/Color.generated";
-import * as Apollo from "@apollo/client";
+import { gql } from '@apollo/client';
+import { BasicColorInfoWithIdFragmentDoc } from '../../gql/Color.generated';
+import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GetAllColorsQueryVariables = Types.Exact<{
-  offset?: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
-  limit?: Types.InputMaybe<Types.Scalars["Int"]["input"]>;
+  offset?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  limit?: Types.InputMaybe<Types.Scalars['Int']['input']>;
 }>;
 
-export type GetAllColorsQuery = {
-  __typename?: "Query";
-  colors?: Array<{
-    __typename?: "Color";
-    id: number;
-    name: string;
-    value: string;
-  } | null> | null;
-};
+
+export type GetAllColorsQuery = { __typename?: 'Query', colors?: Array<{ __typename?: 'Color', id: number, name: string, value: string } | null> | null };
+
 
 export const GetAllColorsDocument = gql`
-  query GET_ALL_COLORS($offset: Int, $limit: Int) {
-    colors(offset: $offset, limit: $limit) {
-      ...BasicColorInfoWithId
-    }
+    query GET_ALL_COLORS($offset: Int, $limit: Int) {
+  colors(offset: $offset, limit: $limit) {
+    ...BasicColorInfoWithId
   }
-  ${BasicColorInfoWithIdFragmentDoc}
-`;
+}
+    ${BasicColorInfoWithIdFragmentDoc}`;
 
 /**
  * __useGetAllColorsQuery__
@@ -45,37 +38,14 @@ export const GetAllColorsDocument = gql`
  *   },
  * });
  */
-export function useGetAllColorsQuery(
-  baseOptions?: Apollo.QueryHookOptions<
-    GetAllColorsQuery,
-    GetAllColorsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetAllColorsQuery, GetAllColorsQueryVariables>(
-    GetAllColorsDocument,
-    options,
-  );
-}
-export function useGetAllColorsLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetAllColorsQuery,
-    GetAllColorsQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetAllColorsQuery, GetAllColorsQueryVariables>(
-    GetAllColorsDocument,
-    options,
-  );
-}
-export type GetAllColorsQueryHookResult = ReturnType<
-  typeof useGetAllColorsQuery
->;
-export type GetAllColorsLazyQueryHookResult = ReturnType<
-  typeof useGetAllColorsLazyQuery
->;
-export type GetAllColorsQueryResult = Apollo.QueryResult<
-  GetAllColorsQuery,
-  GetAllColorsQueryVariables
->;
+export function useGetAllColorsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllColorsQuery, GetAllColorsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllColorsQuery, GetAllColorsQueryVariables>(GetAllColorsDocument, options);
+      }
+export function useGetAllColorsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllColorsQuery, GetAllColorsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllColorsQuery, GetAllColorsQueryVariables>(GetAllColorsDocument, options);
+        }
+export type GetAllColorsQueryHookResult = ReturnType<typeof useGetAllColorsQuery>;
+export type GetAllColorsLazyQueryHookResult = ReturnType<typeof useGetAllColorsLazyQuery>;
+export type GetAllColorsQueryResult = Apollo.QueryResult<GetAllColorsQuery, GetAllColorsQueryVariables>;

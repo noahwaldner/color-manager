@@ -1,56 +1,40 @@
-import * as Types from "../../gql/types";
+import * as Types from '../../gql/types';
 
-import { gql } from "@apollo/client";
-import { BasicColorInfoWithIdFragmentDoc } from "../../gql/Color.generated";
-import * as Apollo from "@apollo/client";
+import { gql } from '@apollo/client';
+import { BasicColorInfoWithIdFragmentDoc } from '../../gql/Color.generated';
+import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type GetColorQueryVariables = Types.Exact<{
-  id: Types.Scalars["Int"]["input"];
+  id: Types.Scalars['Int']['input'];
 }>;
 
-export type GetColorQuery = {
-  __typename?: "Query";
-  color?: {
-    __typename?: "Color";
-    id: number;
-    name: string;
-    value: string;
-  } | null;
-};
+
+export type GetColorQuery = { __typename?: 'Query', color?: { __typename?: 'Color', id: number, name: string, value: string } | null };
 
 export type EditColorMutationVariables = Types.Exact<{
-  id: Types.Scalars["Int"]["input"];
-  name: Types.Scalars["String"]["input"];
-  value: Types.Scalars["String"]["input"];
+  id: Types.Scalars['Int']['input'];
+  name: Types.Scalars['String']['input'];
+  value: Types.Scalars['String']['input'];
 }>;
 
-export type EditColorMutation = {
-  __typename?: "Mutation";
-  updateColor?: {
-    __typename?: "Color";
-    id: number;
-    name: string;
-    value: string;
-  } | null;
-};
+
+export type EditColorMutation = { __typename?: 'Mutation', updateColor?: { __typename?: 'Color', id: number, name: string, value: string } | null };
 
 export type RemoveColorMutationVariables = Types.Exact<{
-  id: Types.Scalars["Int"]["input"];
+  id: Types.Scalars['Int']['input'];
 }>;
 
-export type RemoveColorMutation = {
-  __typename?: "Mutation";
-  removeColor?: { __typename?: "Success"; success?: boolean | null } | null;
-};
+
+export type RemoveColorMutation = { __typename?: 'Mutation', removeColor?: { __typename?: 'Success', success?: boolean | null } | null };
+
 
 export const GetColorDocument = gql`
-  query GET_COLOR($id: Int!) {
-    color(id: $id) {
-      ...BasicColorInfoWithId
-    }
+    query GET_COLOR($id: Int!) {
+  color(id: $id) {
+    ...BasicColorInfoWithId
   }
-  ${BasicColorInfoWithIdFragmentDoc}
-`;
+}
+    ${BasicColorInfoWithIdFragmentDoc}`;
 
 /**
  * __useGetColorQuery__
@@ -68,47 +52,25 @@ export const GetColorDocument = gql`
  *   },
  * });
  */
-export function useGetColorQuery(
-  baseOptions: Apollo.QueryHookOptions<GetColorQuery, GetColorQueryVariables>,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetColorQuery, GetColorQueryVariables>(
-    GetColorDocument,
-    options,
-  );
-}
-export function useGetColorLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetColorQuery,
-    GetColorQueryVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetColorQuery, GetColorQueryVariables>(
-    GetColorDocument,
-    options,
-  );
-}
+export function useGetColorQuery(baseOptions: Apollo.QueryHookOptions<GetColorQuery, GetColorQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetColorQuery, GetColorQueryVariables>(GetColorDocument, options);
+      }
+export function useGetColorLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetColorQuery, GetColorQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetColorQuery, GetColorQueryVariables>(GetColorDocument, options);
+        }
 export type GetColorQueryHookResult = ReturnType<typeof useGetColorQuery>;
-export type GetColorLazyQueryHookResult = ReturnType<
-  typeof useGetColorLazyQuery
->;
-export type GetColorQueryResult = Apollo.QueryResult<
-  GetColorQuery,
-  GetColorQueryVariables
->;
+export type GetColorLazyQueryHookResult = ReturnType<typeof useGetColorLazyQuery>;
+export type GetColorQueryResult = Apollo.QueryResult<GetColorQuery, GetColorQueryVariables>;
 export const EditColorDocument = gql`
-  mutation EDIT_COLOR($id: Int!, $name: String!, $value: String!) {
-    updateColor(id: $id, name: $name, value: $value) {
-      ...BasicColorInfoWithId
-    }
+    mutation EDIT_COLOR($id: Int!, $name: String!, $value: String!) {
+  updateColor(id: $id, name: $name, value: $value) {
+    ...BasicColorInfoWithId
   }
-  ${BasicColorInfoWithIdFragmentDoc}
-`;
-export type EditColorMutationFn = Apollo.MutationFunction<
-  EditColorMutation,
-  EditColorMutationVariables
->;
+}
+    ${BasicColorInfoWithIdFragmentDoc}`;
+export type EditColorMutationFn = Apollo.MutationFunction<EditColorMutation, EditColorMutationVariables>;
 
 /**
  * __useEditColorMutation__
@@ -129,37 +91,21 @@ export type EditColorMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useEditColorMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    EditColorMutation,
-    EditColorMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<EditColorMutation, EditColorMutationVariables>(
-    EditColorDocument,
-    options,
-  );
-}
-export type EditColorMutationHookResult = ReturnType<
-  typeof useEditColorMutation
->;
+export function useEditColorMutation(baseOptions?: Apollo.MutationHookOptions<EditColorMutation, EditColorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<EditColorMutation, EditColorMutationVariables>(EditColorDocument, options);
+      }
+export type EditColorMutationHookResult = ReturnType<typeof useEditColorMutation>;
 export type EditColorMutationResult = Apollo.MutationResult<EditColorMutation>;
-export type EditColorMutationOptions = Apollo.BaseMutationOptions<
-  EditColorMutation,
-  EditColorMutationVariables
->;
+export type EditColorMutationOptions = Apollo.BaseMutationOptions<EditColorMutation, EditColorMutationVariables>;
 export const RemoveColorDocument = gql`
-  mutation REMOVE_COLOR($id: Int!) {
-    removeColor(id: $id) {
-      success
-    }
+    mutation REMOVE_COLOR($id: Int!) {
+  removeColor(id: $id) {
+    success
   }
-`;
-export type RemoveColorMutationFn = Apollo.MutationFunction<
-  RemoveColorMutation,
-  RemoveColorMutationVariables
->;
+}
+    `;
+export type RemoveColorMutationFn = Apollo.MutationFunction<RemoveColorMutation, RemoveColorMutationVariables>;
 
 /**
  * __useRemoveColorMutation__
@@ -178,24 +124,10 @@ export type RemoveColorMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useRemoveColorMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    RemoveColorMutation,
-    RemoveColorMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<RemoveColorMutation, RemoveColorMutationVariables>(
-    RemoveColorDocument,
-    options,
-  );
-}
-export type RemoveColorMutationHookResult = ReturnType<
-  typeof useRemoveColorMutation
->;
-export type RemoveColorMutationResult =
-  Apollo.MutationResult<RemoveColorMutation>;
-export type RemoveColorMutationOptions = Apollo.BaseMutationOptions<
-  RemoveColorMutation,
-  RemoveColorMutationVariables
->;
+export function useRemoveColorMutation(baseOptions?: Apollo.MutationHookOptions<RemoveColorMutation, RemoveColorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveColorMutation, RemoveColorMutationVariables>(RemoveColorDocument, options);
+      }
+export type RemoveColorMutationHookResult = ReturnType<typeof useRemoveColorMutation>;
+export type RemoveColorMutationResult = Apollo.MutationResult<RemoveColorMutation>;
+export type RemoveColorMutationOptions = Apollo.BaseMutationOptions<RemoveColorMutation, RemoveColorMutationVariables>;

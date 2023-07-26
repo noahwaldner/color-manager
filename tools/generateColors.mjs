@@ -14,7 +14,7 @@ export const generateColors = () => {
   });
 
   const options = {
-    hostname: "https://color-api-nnxacpp5eq-uc.a.run.app",
+    hostname: "color-api-nnxacpp5eq-uc.a.run.app",
     path: "/",
     port: 80,
     method: "POST",
@@ -30,13 +30,14 @@ export const generateColors = () => {
       data += d;
     });
     res.on("end", () => {
+      console.log(data);
       const __filename = fileURLToPath(import.meta.url);
       const __dirname = path.dirname(__filename);
       const colorData = Object.fromEntries(
         JSON.parse(data).data.colors.map((x) => [toCamelCase(x.name), x.value]),
       );
       fs.writeFileSync(
-        path.join(__dirname, "../src/lib/color.json"),
+        path.join(__dirname, "../src/style/color.json"),
         JSON.stringify(colorData, null, 2),
       );
     });

@@ -11,8 +11,6 @@ import { BackToHome } from "./components/BackToHome";
 
 const App = () => {
   const [location] = useLocation();
-
-  console.log(location !== "/");
   
   return (
     <Container>

@@ -1,36 +1,26 @@
-import * as Types from "../../gql/types";
+import * as Types from '../../gql/types';
 
-import { gql } from "@apollo/client";
-import { BasicColorInfoWithIdFragmentDoc } from "../../gql/Color.generated";
-import * as Apollo from "@apollo/client";
+import { gql } from '@apollo/client';
+import { BasicColorInfoWithIdFragmentDoc } from '../../gql/Color.generated';
+import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
 export type AddColorMutationVariables = Types.Exact<{
-  name: Types.Scalars["String"]["input"];
-  value: Types.Scalars["String"]["input"];
+  name: Types.Scalars['String']['input'];
+  value: Types.Scalars['String']['input'];
 }>;
 
-export type AddColorMutation = {
-  __typename?: "Mutation";
-  addColor?: {
-    __typename?: "Color";
-    id: number;
-    name: string;
-    value: string;
-  } | null;
-};
+
+export type AddColorMutation = { __typename?: 'Mutation', addColor?: { __typename?: 'Color', id: number, name: string, value: string } | null };
+
 
 export const AddColorDocument = gql`
-  mutation ADD_COLOR($name: String!, $value: String!) {
-    addColor(name: $name, value: $value) {
-      ...BasicColorInfoWithId
-    }
+    mutation ADD_COLOR($name: String!, $value: String!) {
+  addColor(name: $name, value: $value) {
+    ...BasicColorInfoWithId
   }
-  ${BasicColorInfoWithIdFragmentDoc}
-`;
-export type AddColorMutationFn = Apollo.MutationFunction<
-  AddColorMutation,
-  AddColorMutationVariables
->;
+}
+    ${BasicColorInfoWithIdFragmentDoc}`;
+export type AddColorMutationFn = Apollo.MutationFunction<AddColorMutation, AddColorMutationVariables>;
 
 /**
  * __useAddColorMutation__
@@ -50,21 +40,10 @@ export type AddColorMutationFn = Apollo.MutationFunction<
  *   },
  * });
  */
-export function useAddColorMutation(
-  baseOptions?: Apollo.MutationHookOptions<
-    AddColorMutation,
-    AddColorMutationVariables
-  >,
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useMutation<AddColorMutation, AddColorMutationVariables>(
-    AddColorDocument,
-    options,
-  );
-}
+export function useAddColorMutation(baseOptions?: Apollo.MutationHookOptions<AddColorMutation, AddColorMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddColorMutation, AddColorMutationVariables>(AddColorDocument, options);
+      }
 export type AddColorMutationHookResult = ReturnType<typeof useAddColorMutation>;
 export type AddColorMutationResult = Apollo.MutationResult<AddColorMutation>;
-export type AddColorMutationOptions = Apollo.BaseMutationOptions<
-  AddColorMutation,
-  AddColorMutationVariables
->;
+export type AddColorMutationOptions = Apollo.BaseMutationOptions<AddColorMutation, AddColorMutationVariables>;
